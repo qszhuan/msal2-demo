@@ -1,26 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import AzureADApp, { AuthenticationState } from './AuthADApp';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(props) {
+  if(props.error){
+  return <div>error: {props.error} <button onClick={props.login}>login</button></div>
+  }
+  if(props.authenticationState === AuthenticationState.Authenticated){
+    return <div>hello, <button onClick={props.logout}>logout</button></div>
+  }
+  if(props.authenticationState === AuthenticationState.UnAuthenticated && !props.forceLogin)
+  return (<div>
+      <button onClick={props.login}>Login</button>
+  </div>);
+
+  return <div>xxxxxxxxxxx</div>
 }
 
-export default App;
+
+
+export default AzureADApp(App);
