@@ -14,10 +14,12 @@ const config = {
 
 const loginRequest = {
   scopes: ['User.Read'],
+  redirectUri: window.location.origin
 };
 
 const tokenRequest = {
   scopes: ['User.Read'],
+  redirectUri: window.location.origin
 };
 
 const LoginType = {
